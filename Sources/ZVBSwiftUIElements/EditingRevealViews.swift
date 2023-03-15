@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct EditingRevealViews<LeftItems: View, RightItems: View>: ViewModifier {
+public struct EditingRevealViews<LeftItems: View, RightItems: View>: ViewModifier {
     
     @ViewBuilder var leftItems: LeftItems
     @ViewBuilder var rightItems: RightItems
@@ -15,7 +15,7 @@ struct EditingRevealViews<LeftItems: View, RightItems: View>: ViewModifier {
     @Environment(\.editMode) private var editMode
     private var isEditing: Bool { editMode?.wrappedValue == .active }
     
-    func body(content: Content) -> some View {
+    public func body(content: Content) -> some View {
         HStack(spacing: 0) {
             if isEditing {
                 leftItems
@@ -34,7 +34,7 @@ struct EditingRevealViews<LeftItems: View, RightItems: View>: ViewModifier {
     }
 }
 
-extension View {
+public extension View {
     func editingRevealViews<LeftItems: View, RightItems: View>(
         @ViewBuilder leftItems: () -> LeftItems = { EmptyView() },
         @ViewBuilder rightItems: () -> RightItems = { EmptyView() }

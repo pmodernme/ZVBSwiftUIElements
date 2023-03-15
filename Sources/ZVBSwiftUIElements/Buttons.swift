@@ -7,49 +7,43 @@
 
 import SwiftUI
 
-@available(iOS 15.0, *)
-struct ImageButton: View {
+public extension Button where Label == ButtonImage {
     
-    var role: ButtonRole? = nil
+    @available(iOS 15.0, *)
+    init(buttonImage: Image, role: ButtonRole? = nil, _ action: @escaping () -> Void) {
+        self.init(role: role, action: action) {
+            ButtonImage(image: buttonImage)
+        }
+    }
     
-    var image: Image
-    
-    var action: () -> Void
-    
-    var body: some View {
-        Button(role: role) {
-            action()
-        } label: {
-            image
-                .resizable(resizingMode: .stretch)
-                .aspectRatio(contentMode: .fill)
-                .padding(8)
-                .frame(width: 44, height: 44)
+    init(buttonImage: Image, _ action: @escaping () -> Void) {
+        self.init(action: action) {
+            ButtonImage(image: buttonImage)
         }
     }
 }
 
-@available(iOS 15.0, *)
-struct AddButton: View {
+public struct ButtonImage: View {
     
-    var action: () -> Void
+    public var image: Image
     
-    var body: some View {
-        ImageButton(image: Image("add_circle", bundle: .module)) {
-            action()
-        }
-        .foregroundColor(.green)
+    public var body: some View {
+        image
+            .resizable(resizingMode: .stretch)
+            .aspectRatio(contentMode: .fill)
+            .padding(8)
+            .frame(width: 44, height: 44)
     }
+    
 }
 
+#if DEBUG
 @available(iOS 15.0, *)
-struct RemoveButton: View {
-    
-    var action: () -> Void
-    
-    var body: some View {
-        ImageButton(role: .destructive, image: Image("remove", bundle: .module)) {
-            action()
+struct Button_Previews: PreviewProvider {
+    static var previews: some View {
+        HStack {
+            Button(buttonImage: Image("remove"), role: .destructive, {})
         }
     }
 }
+#endif
