@@ -36,14 +36,3 @@ public struct ButtonImage: View {
     }
     
 }
-
-#if DEBUG
-@available(iOS 15.0, *)
-struct Button_Previews: PreviewProvider {
-    static var previews: some View {
-        HStack {
-            Button(buttonImage: Image("remove"), role: .destructive, {})
-        }
-    }
-}
-#endif

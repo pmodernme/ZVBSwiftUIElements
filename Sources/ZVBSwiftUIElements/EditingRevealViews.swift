@@ -9,6 +9,8 @@ import SwiftUI
 
 public struct EditingRevealViews<LeftItems: View, RightItems: View>: ViewModifier {
     
+    var spacing: CGFloat?
+    
     @ViewBuilder var leftItems: LeftItems
     @ViewBuilder var rightItems: RightItems
 
@@ -16,10 +18,10 @@ public struct EditingRevealViews<LeftItems: View, RightItems: View>: ViewModifie
     private var isEditing: Bool { editMode?.wrappedValue == .active }
     
     public func body(content: Content) -> some View {
-        HStack(spacing: 0) {
+        HStack(spacing: spacing) {
             if isEditing {
                 leftItems
-                    .transition(.move(edge: .leading).combined(with: .opacity))
+                    .transition(.opacity)
                     .zIndex(0)
             }
             content
@@ -27,7 +29,7 @@ public struct EditingRevealViews<LeftItems: View, RightItems: View>: ViewModifie
                 .zIndex(1)
             if isEditing {
                 rightItems
-                    .transition(.move(edge: .trailing).combined(with: .opacity))
+                    .transition(.opacity)
                     .zIndex(0)
             }
         }
@@ -36,10 +38,11 @@ public struct EditingRevealViews<LeftItems: View, RightItems: View>: ViewModifie
 
 public extension View {
     func editingRevealViews<LeftItems: View, RightItems: View>(
+        spacing: CGFloat? = nil,
         @ViewBuilder leftItems: () -> LeftItems = { EmptyView() },
         @ViewBuilder rightItems: () -> RightItems = { EmptyView() }
     ) -> ModifiedContent<Self, EditingRevealViews<LeftItems, RightItems>> {
-        modifier(EditingRevealViews(leftItems: leftItems, rightItems: rightItems))
+        modifier(EditingRevealViews(spacing: spacing, leftItems: leftItems, rightItems: rightItems))
     }
 }
 
@@ -58,6 +61,7 @@ struct EditingRevealViews_Previews: PreviewProvider {
                 LazyVStack {
                     center
                         .editingRevealViews(
+                            spacing: 0,
                             leftItems: { left },
                             rightItems: { right }
                         )
