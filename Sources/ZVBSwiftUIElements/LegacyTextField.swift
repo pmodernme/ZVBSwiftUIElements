@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import Composed
 
 @available(iOS 14.0, *)
 public struct LegacyTextField: UIViewRepresentable {
