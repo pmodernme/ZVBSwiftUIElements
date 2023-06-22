@@ -8,8 +8,8 @@
 import SwiftUI
 
 @available(iOS 14.0, *)
-struct AccessibilityHStack<Content: View>: View {
-    init(hStackAlignment: VerticalAlignment = .center, vStackAlignment: HorizontalAlignment = .center, compactThreshold: ContentSizeCategory = .extraExtraExtraLarge, regularThreshold: ContentSizeCategory = .accessibilityExtraExtraExtraLarge, spacing: CGSize? = nil, @ViewBuilder content: () -> Content) {
+public struct AccessibilityHStack<Content: View>: View {
+    public init(hStackAlignment: VerticalAlignment = .center, vStackAlignment: HorizontalAlignment = .center, compactThreshold: ContentSizeCategory = .extraExtraExtraLarge, regularThreshold: ContentSizeCategory = .accessibilityExtraExtraExtraLarge, spacing: CGSize? = nil, @ViewBuilder content: () -> Content) {
         self.hStackAlignment = hStackAlignment
         self.vStackAlignment = vStackAlignment
         self.compactThreshold = compactThreshold
@@ -34,7 +34,7 @@ struct AccessibilityHStack<Content: View>: View {
     
     var content: Content
     
-    var body: some View {
+    public var body: some View {
         if horizontalSizeClass == .compact && sizeCategory > compactThreshold
             || horizontalSizeClass == .regular && sizeCategory > regularThreshold {
             VStack(alignment: vStackAlignment, spacing: spacing?.height) {
