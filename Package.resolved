@@ -1,0 +1,23 @@
+{
+  "pins" : [
+    {
+      "identity" : "composed",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/pmodernme/Composed",
+      "state" : {
+        "branch" : "master",
+        "revision" : "fd5a3920727ff2a75ea21dffceb08a19127c13e6"
+      }
+    },
+    {
+      "identity" : "legacypreviews",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/pmodernme/LegacyPreviews",
+      "state" : {
+        "branch" : "main",
+        "revision" : "865492c5352c0bd8b7d5af1eea3b39e65643c06f"
+      }
+    }
+  ],
+  "version" : 2
+}
