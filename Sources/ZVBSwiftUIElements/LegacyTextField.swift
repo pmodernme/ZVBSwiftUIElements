@@ -6,7 +6,6 @@
 //
 
 import SwiftUI
-import Composed
 
 @available(iOS 14.0, *)
 public struct LegacyTextField: UIViewRepresentable {
@@ -109,7 +108,8 @@ struct LegacyTextField_Previews: PreviewProvider {
         var body: some View {
             VStack {
                 LegacyTextField(text: $state.text, isEditing: $isEditing, font: .preferredFont(forTextStyle: .caption1))
-                    .padding(EdgeInsets(horizontal: 8, vertical: 4))
+                    .padding(.horizontal, 8)
+                    .padding(.vertical, 4)
                     .background(background)
                 Text(state.text)
             }

@@ -7,7 +7,6 @@
 //
 
 import SwiftUI
-import LegacyPreviews
 
 @available(iOS 13.0, *)
 public struct DisclosureChevron: View {
